@@ -1,5 +1,5 @@
 /* See LICENSE for license details. */
-
+#include <stdbool.h>
 #include <stdint.h>
 #include <sys/types.h>
 
@@ -10,6 +10,8 @@
 #define BETWEEN(x, a, b)	((a) <= (x) && (x) <= (b))
 #define DIVCEIL(n, d)		(((n) + ((d) - 1)) / (d))
 #define DEFAULT(a, b)		(a) = (a) ? (a) : (b)
+#define INTERVAL(x, a, b)		(x) < (a) ? (a) : (x) > (b) ? (b) : (x)
+#define INTERVAL_DIFF(x, a, b)		(x) < (a) ? (x) - (a) : (x) > (b) ? (x) - (b) : 0
 #define LIMIT(x, a, b)		(x) = (x) < (a) ? (a) : (x) > (b) ? (b) : (x)
 #define ATTRCMP(a, b)		((a).mode != (b).mode || (a).fg != (b).fg || \
 				(a).bg != (b).bg)
@@ -33,6 +35,8 @@ enum glyph_attribute {
 	ATTR_WRAP       = 1 << 8,
 	ATTR_WIDE       = 1 << 9,
 	ATTR_WDUMMY     = 1 << 10,
+	ATTR_HIGHLIGHT  = 1 << 12,
+	ATTR_CURRENT    = 1 << 13,
 	ATTR_BOLD_FAINT = ATTR_BOLD | ATTR_FAINT,
 };
 
@@ -81,9 +85,15 @@ void die(const char *, ...);
 void redraw(void);
 void draw(void);
 
+int highlighted(int, int);
+int currentLine(int, int);
 void kscrolldown(const Arg *);
 void kscrollup(const Arg *);
 void newterm(const Arg *);
+void kpressNormalMode(char const * ksym, uint32_t len, bool esc, bool enter, bool backspace);
+void normalMode(Arg const *);
+void onNormalModeStart();
+void onNormalModeStop();
 void printscreen(const Arg *);
 void printsel(const Arg *);
 void sendbreak(const Arg *);
@@ -103,8 +113,10 @@ void resettitle(void);
 
 void selclear(void);
 void selinit(void);
-void selstart(int, int, int);
-void selextend(int, int, int, int);
+void selstart(int, int, int, int);
+void xselstart(int, int, int);
+void selextend(int, int, int, int, int);
+void xselextend(int, int, int, int);
 int selected(int, int);
 char *getsel(void);
 
@@ -125,3 +137,14 @@ extern unsigned int tabspaces;
 extern unsigned int defaultfg;
 extern unsigned int defaultbg;
 extern float alpha;
+
+extern char wordDelimSmall[];
+extern char wordDelimLarge[];
+
+typedef struct NormalModeShortcuts {
+	char key;
+	char *value;
+} NormalModeShortcuts;
+
+extern NormalModeShortcuts normalModeShortcuts[];
+extern size_t const amountNormalModeShortcuts;
