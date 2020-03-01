@@ -2,6 +2,7 @@
 #include <math.h>
 #include <limits.h>
 #include <locale.h>
+#include <stdbool.h>
 #include <signal.h>
 #include <sys/select.h>
 #include <time.h>
@@ -252,6 +253,7 @@ static char *opt_io    = NULL;
 static char *opt_line  = NULL;
 static char *opt_name  = NULL;
 static char *opt_title = NULL;
+static bool focused = true;
 
 static int oldbutton = 3; /* button event on startup: 3 = release */
 
@@ -772,6 +774,19 @@ normalMode(Arg const *_)  //< the argument is just for the sake of
 	}
 }
 
+void
+xloadalpha(void)
+{
+    /* set alpha value of bg color */
+    if (opt_alpha)
+        alpha = strtof(opt_alpha, NULL);
+
+    float const usedAlpha = focused ? alpha : alphaUnfocussed;
+
+    dc.col[defaultbg].color.alpha = (unsigned short)(0xffff * usedAlpha);
+    dc.col[defaultbg].pixel &= 0x00FFFFFF;
+    dc.col[defaultbg].pixel |= (unsigned char)(0xff * usedAlpha) << 24;
+}
 
 void
 xloadcols(void)
@@ -802,6 +817,7 @@ xloadcols(void)
 	dc.col[defaultbg].color.alpha = (unsigned short)(0xffff * alpha);
 	dc.col[defaultbg].pixel &= 0x00FFFFFF;
 	dc.col[defaultbg].pixel |= (unsigned char)(0xff * alpha) << 24;
+        xloadalpha();
 	loaded = 1;
 }
 
@@ -1875,12 +1891,23 @@ focus(XEvent *ev)
 		xseturgency(0);
 		if (IS_SET(MODE_FOCUS))
 			ttywrite("\033[I", 3, 0);
+                if (!focused) {
+			focused = true;
+			xloadalpha();
+			redraw();
+		}
 	} else {
 		if (xw.ime.xic)
 			XUnsetICFocus(xw.ime.xic);
 		win.mode &= ~MODE_FOCUSED;
 		if (IS_SET(MODE_FOCUS))
 			ttywrite("\033[O", 3, 0);
+                if (focused) {
+			focused = false;
+			xloadalpha();
+			redraw();
+		}
+
 	}
 }
 
