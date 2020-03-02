@@ -1,7 +1,28 @@
-st - simple terminal
---------------------
+My Personal configuration of st - simple terminal
+==================================================
 st is a simple terminal emulator for X which sucks less.
 
+Bindings
+---------
+
+|**Action**                              | **shortcut**     |
+|----------------------------------------|------------------|
+|new terminal<br>in current directory    | Ctrl+Shift+Return|
+|zoom in                                 | Ctrl+Shift+Pg_Up |
+|zoom out                                | Ctrl+Shift+Pg_Dn |
+|zoom reset                              | Ctrl+Shift+home  |
+|copy                                    | Ctrl+Shift+c     |
+|paste                                   | Ctrl+Shift+v     |
+|scroll up                               | Shift+Pg_Up      |
+|scroll down                             | Shift+Pg_dn      |
+|follow & copy link                      | alt-l            |
+|open url                                | alt-o            |
+
+Additional Patches
+------------------
++ alpha - control transperancy with -A flag
++ boxdraw
++ font2 - change font by using -f flag
 
 Requirements
 ------------
@@ -10,6 +31,10 @@ In order to build st you need the Xlib header files.
 
 Installation
 ------------
+Start by cloning the repo
+```
+git clone repo
+```
 Edit config.mk to match your local setup (st is installed into
 the /usr/local namespace by default).
 
@@ -28,7 +53,4 @@ the st terminfo entry with the following command:
 
 See the man page for additional details.
 
-Credits
--------
-Based on Aurélien APTEL <aurelien dot aptel at gmail dot com> bt source code.
 
