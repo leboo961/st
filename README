@@ -18,9 +18,12 @@ Bindings
 |follow & copy link                      | alt-l            |
 |open url                                | alt-o            |
 
+⚠ Mouse scrollback not added to my configuration.
+
 Additional Patches
 ------------------
 + alpha - control transperancy with -A flag
++ alpha focus highlight - not adjustable with a flag
 + boxdraw
 + font2 - change font by using -f flag
 
