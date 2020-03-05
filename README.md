@@ -17,8 +17,35 @@ Bindings
 |scroll down                             | Shift+Pg_dn      |
 |follow & copy link                      | alt-l            |
 |open url                                | alt-o            |
+|vim Browse                              | alt-v            |
 
-⚠ Mouse scrollback not added to my configuration.
+⚠ Mouse scrollback not supported in my configuration.
+
+Default vim Browse Behavior:
+---------------------------
+
+The default behavior listed below can be adapted:
+
+### Enter Vim Browse Mode:
+
+    Alt+c
+
+### Operations in Vim Browse Mode:
+
+    Enter Visual Mode: V / v
+    Enter Yank Mode: Y
+
+### Motions in Vim Browse Mode:
+
+    + Basic motions: j, k, h, l, H, M, L, 0, $ like in VIM
+    + Word Move operators: w, W, e, E, b, B similar to VIM
+    + Search Operators: /, ?, n, N for forward / backward search
+    + Jump to the cursor position prior to entering Vim Browse Mode: G
+    + Repeat last command string: .
+    + in Visual Mode v: use t to toggle block selection mode
+    + Commands like yiw and ya{ are implemented.
+    + <Ctrl>f(one page 'down') <Ctrl>b (one page up) <Ctrl>u, <Ctrl>d for half page up/down.
+    + . (repeat) last set of motions, and c to clear the last motion.
 
 Additional Patches
 ------------------
@@ -29,12 +56,12 @@ Additional Patches
 
 Requirements
 ------------
-In order to build st you need the Xlib header files.
+In order to build st, you need the Xlib header files.
 
 
 Installation
 ------------
-Start by cloning the repo
+Start by cloning the repository:
 ```
 git clone repo
 ```
