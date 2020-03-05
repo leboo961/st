@@ -176,7 +176,7 @@ static unsigned int defaultattr = 11;
 static unsigned int highlightBg = 160;
 static unsigned int highlightFg = 15;
 /// Colors for the line and column that is marked 'current' in normal mode.
-static unsigned int currentBg = 0;
+static unsigned int currentBg = 8;
 static unsigned int currentFg = 15;
 
 /*
@@ -510,3 +510,25 @@ struct NormalModeShortcuts normalModeShortcuts [] = {
 };
 
 size_t const amountNormalModeShortcuts = sizeof(normalModeShortcuts) / sizeof(*normalModeShortcuts);
+
+/// Style of the command string visualized in normal mode in the right corner
+/// [Vim Browse].
+Glyph const styleCommand = {' ', ATTR_ITALIC | ATTR_FAINT, 7, 16};
+/// Style of the search string visualized in normal mode in the right corner.
+/// [Vim Browse].
+Glyph const styleSearch = {' ', ATTR_ITALIC | ATTR_BOLD_FAINT, 7, 16};
+
+/// Colors used in normal mode in order to highlight different operations and
+/// empathise the current position on screen  in  the status area [Vim Browse].
+unsigned int bgCommandYank = 11;
+unsigned int bgCommandVisual = 4;
+unsigned int bgCommandVisualLine = 12;
+
+unsigned int fgCommandYank = 232;
+unsigned int fgCommandVisual = 232;
+unsigned int fgCommandVisualLine = 232;
+
+unsigned int bgPos = 15;
+unsigned int fgPos = 16;
+
+

@@ -763,15 +763,9 @@ xloadcolor(int i, const char *name, Color *ncolor)
 }
 
 void
-normalMode(Arg const *_)  //< the argument is just for the sake of
-                          //  adhering to the function format.
-{
-	win.mode ^= MODE_NORMAL; //< toggle normal mode via exclusive or.
-	if (win.mode & MODE_NORMAL) {
-		onNormalModeStart();
-	} else {
-		onNormalModeStop();
-	}
+normalMode(Arg const *_) {
+	(void) _;
+	win.mode ^= MODE_NORMAL;
 }
 
 void
@@ -1761,7 +1755,7 @@ xdrawline(Line line, int x1, int y1, int x2)
 
 	numspecs = xmakeglyphfontspecs(specs, &line[x1], x2 - x1, x1, y1);
 	i = ox = 0;
-	for (x = x1; x < x2 && i < numspecs; x++) {
+	for (x = x1; x < x2 && i < numspecs; ++x) {
 		new = line[x];
 		if (new.mode == ATTR_WDUMMY)
 			continue;
@@ -1972,6 +1966,14 @@ kpress(XEvent *ev)
 		len = XmbLookupString(xw.ime.xic, e, buf, sizeof buf, &ksym, &status);
 	else
 		len = XLookupString(e, buf, sizeof buf, &ksym, NULL);
+
+	if (IS_SET(MODE_NORMAL)) {
+		ExitState const es = kpressNormalMode(buf, len, // strlen(buf),
+ 				match(ControlMask, e->state),
+ 				&ksym);
+ 		if (es == finished) { normalMode(NULL); }
+		return;
+	}
 	/* 1. shortcuts */
 	for (bp = shortcuts; bp < shortcuts + LEN(shortcuts); bp++) {
 		if (ksym == bp->keysym && match(bp->mod, e->state)) {

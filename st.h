@@ -3,6 +3,9 @@
 #include <stdint.h>
 #include <sys/types.h>
 
+#include "glyph.h"
+#include "normalMode.h"
+
 /* macros */
 #define MIN(a, b)		((a) < (b) ? (a) : (b))
 #define MAX(a, b)		((a) < (b) ? (b) : (a))
@@ -47,11 +50,6 @@ enum selection_mode {
 	SEL_READY = 2
 };
 
-enum selection_type {
-	SEL_REGULAR = 1,
-	SEL_RECTANGULAR = 2
-};
-
 enum selection_snap {
 	SNAP_WORD = 1,
 	SNAP_LINE = 2
@@ -61,18 +59,6 @@ typedef unsigned char uchar;
 typedef unsigned int uint;
 typedef unsigned long ulong;
 typedef unsigned short ushort;
-
-typedef uint_least32_t Rune;
-
-#define Glyph Glyph_
-typedef struct {
-	Rune u;           /* character code */
-	ushort mode;      /* attribute flags */
-	uint32_t fg;      /* foreground  */
-	uint32_t bg;      /* background  */
-} Glyph;
-
-typedef Glyph *Line;
 
 typedef union {
 	int i;
@@ -91,7 +77,7 @@ int currentLine(int, int);
 void kscrolldown(const Arg *);
 void kscrollup(const Arg *);
 void newterm(const Arg *);
-void kpressNormalMode(char const * ksym, uint32_t len, bool esc, bool enter, bool backspace);
+//void kpressNormalMode(char const * ksym, uint32_t len, bool esc, bool enter, bool backspace);
 void normalMode(Arg const *);
 void onNormalModeStart();
 void onNormalModeStop();
@@ -106,6 +92,9 @@ int tattrset(int);
 void tnew(int, int);
 void tresize(int, int);
 void tsetdirtattr(int);
+size_t utf8decode(const char *, Rune *, size_t);
+Rune utf8decodebyte(char, size_t *);
+void tsetdirt(int, int);
 void ttyhangup(void);
 int ttynew(char *, char *, char *, char **);
 size_t ttyread(void);
@@ -154,10 +143,6 @@ extern float alphaUnfocussed;
 extern char wordDelimSmall[];
 extern char wordDelimLarge[];
 
-typedef struct NormalModeShortcuts {
-	char key;
-	char *value;
-} NormalModeShortcuts;
 
 extern NormalModeShortcuts normalModeShortcuts[];
 extern size_t const amountNormalModeShortcuts;
