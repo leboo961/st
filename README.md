@@ -15,14 +15,13 @@ st is a simple terminal emulator for X which sucks less.
 |paste                                   | Ctrl+Shift+v     |
 |scroll up                               | Shift+Pg_Up      |
 |scroll down                             | Shift+Pg_dn      |
-|follow & copy link                      | alt-l            |
-|open url                                | alt-o            |
-|vim Browse                              | alt-c            |
+|follow & copy link                      | Alt+l            |
+|open url                                | Alt+o            |
+|vim Browse                              | Alt+c            |
 
 ⚠ Mouse scrollback not supported in my configuration.
 
-Default vim Browse Behavior:
----------------------------
+## Default vim Browse Behavior:
 
 The default behavior listed below can be adapted:
 
@@ -84,5 +83,3 @@ the st terminfo entry with the following command:
     tic -sx st.info
 
 See the man page for additional details.
-
-
