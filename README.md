@@ -37,15 +37,15 @@ The default behavior listed below can be adapted:
 
 ### Motions in Vim Browse Mode:
 
-    + Basic motions: j, k, h, l, H, M, L, 0, $ like in VIM
-    + Word Move operators: w, W, e, E, b, B similar to VIM
-    + Search Operators: /, ?, n, N for forward / backward search
-    + Jump to the cursor position prior to entering Vim Browse Mode: G
-    + Repeat last command string: .
-    + in Visual Mode v: use t to toggle block selection mode
-    + Commands like yiw and ya{ are implemented.
-    + <Ctrl>f(one page 'down') <Ctrl>b (one page up) <Ctrl>u, <Ctrl>d for half page up/down.
-    + . (repeat) last set of motions, and c to clear the last motion.
++ Basic motions: j, k, h, l, H, M, L, 0, $ like in VIM
++ Word Move operators: w, W, e, E, b, B similar to VIM
++ Search Operators: /, ?, n, N for forward / backward search
++ Jump to the cursor position prior to entering Vim Browse Mode: G
++ Repeat last command string: .
++ in Visual Mode v: use t to toggle block selection mode
++ Commands like yiw and ya{ are implemented.
++ <Ctrl>f(one page 'down') <Ctrl>b (one page up) <Ctrl>u, <Ctrl>d for half page up/down.
++ . (repeat) last set of motions, and c to clear the last motion.
 
 ## Additional Patches
 
