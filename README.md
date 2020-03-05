@@ -17,7 +17,7 @@ st is a simple terminal emulator for X which sucks less.
 |scroll down                             | Shift+Pg_dn      |
 |follow & copy link                      | alt-l            |
 |open url                                | alt-o            |
-|vim Browse                              | alt-v            |
+|vim Browse                              | alt-c            |
 
 ⚠ Mouse scrollback not supported in my configuration.
 
