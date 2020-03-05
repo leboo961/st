@@ -1,9 +1,9 @@
-My Personal configuration of st - simple terminal
-==================================================
+# My Personal configuration of st - simple terminal
+
 st is a simple terminal emulator for X which sucks less.
 
-Bindings
----------
+## Bindings
+
 
 |**Action**                              | **shortcut**     |
 |----------------------------------------|------------------|
@@ -47,24 +47,26 @@ The default behavior listed below can be adapted:
     + <Ctrl>f(one page 'down') <Ctrl>b (one page up) <Ctrl>u, <Ctrl>d for half page up/down.
     + . (repeat) last set of motions, and c to clear the last motion.
 
-Additional Patches
-------------------
+## Additional Patches
+
 + alpha - control transperancy with -A flag
 + alpha focus highlight - not adjustable with a flag
 + boxdraw
 + font2 - change font by using -f flag
 
-Requirements
-------------
-In order to build st, you need the Xlib header files.
+## Requirements
+
+In order to build st you need the Xlib header files.
 
 
-Installation
-------------
-Start by cloning the repository:
+## Installation
+
+Start by cloning the repo
+
 ```
-git clone repo
+git clone https://github.com/fjeh/st
 ```
+
 Edit config.mk to match your local setup (st is installed into
 the /usr/local namespace by default).
 
@@ -74,8 +76,8 @@ necessary as root):
     make clean install
 
 
-Running st
-----------
+## Running st
+
 If you did not install st with make clean install, you must compile
 the st terminfo entry with the following command:
 
