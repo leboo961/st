@@ -61,9 +61,9 @@ In order to build st you need the Xlib header files.
 
 ## Installation
 
-Start by cloning the repo
+Start by cloning the repository
 
-```
+```git
 git clone https://github.com/fjeh/st
 ```
 
