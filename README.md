@@ -1,5 +1,5 @@
 # My Personal configuration of st - simple terminal 
-[![Actions Status](https://github.com/fjeh/st/workflows/build/badge.svg)](https://github.com/fjeh/st/actions)
+[![Actions Status](https://xxx.execute-api.us-west-2.amazonaws.com/production/badge/fjeh/st?style=flat-square)](https://xxx.execute-api.us-west-2.amazonaws.com/production/results/fjeh/st)
 
 st is a simple terminal emulator for X which sucks less.
 
