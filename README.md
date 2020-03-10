@@ -1,4 +1,5 @@
-# My Personal configuration of st - simple terminal
+# My Personal configuration of st - simple terminal 
+[![Actions Status](https://github.com/fjeh/st/workflows/build/badge.svg)](https://github.com/fjeh/st/actions)
 
 st is a simple terminal emulator for X which sucks less.
 
