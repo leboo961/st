@@ -1,5 +1,4 @@
-# My Personal configuration of st - simple terminal 
-![build](https://github.com/fjeh/st/workflows/C/C++%20CI/badge.svg)
+# My Personal configuration of st - simple terminal  ![GitHub](https://img.shields.io/github/license/fjeh/st?style=plastic)
 
 st is a simple terminal emulator for X which sucks less.
 
